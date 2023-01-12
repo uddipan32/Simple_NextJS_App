@@ -7,13 +7,13 @@ import { useState } from "react";
 import Button from "@mui/material/Button";
 
 import SnackBar from "../src/components/misc/SnackBar";
+import AlertDialog from "../src/components/misc/AlertDialog";
 
 export default function Home() {
   // ==== SNACKBAR STATES ===
   const [openSnackBar, setOpenSnackBar] = useState(false);
   const [snackBarMsg, setSnackBarMsg] = useState("");
   const [snackBarType, setSnackBarType] = useState(""); // "success", "warning", "error"
-
   const handleCloseSnackBar = () => {
     setOpenSnackBar(false);
   };
@@ -21,6 +21,16 @@ export default function Home() {
   const handleOpenSnackBar = () => {
     setOpenSnackBar(true);
   };
+
+  // ==== CONFIRMATION DIALOG ====
+  const [openDialog, setOpenDialog] = useState(false);
+  const [action, setAction] = useState("");
+  const [alertTitle, setAlertTitle] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
+  // ============================
 
   return (
     <div className={styles.container}>
@@ -46,6 +56,13 @@ export default function Home() {
           handleCloseSnackBar={handleCloseSnackBar}
           snackBarMsg={"HELLO"}
           snackBarType={"success"}
+        />
+        <AlertDialog
+          openDialog={openDialog}
+          closeDialog={handleCloseDialog}
+          dialogAction={dialogAction}
+          alertTitle={alertTitle}
+          alertMessage={alertMessage}
         />
       </main>
     </div>
